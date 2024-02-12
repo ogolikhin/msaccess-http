@@ -17,7 +17,7 @@ public record ParameterDto(
     string ParameterName,
     [property:JsonConverter(typeof(JsonStringEnumConverter<DbType>))]
     [Required]
-    DbType DbType,
+    DbType? DbType,
     [Required]
     string? Value
 );

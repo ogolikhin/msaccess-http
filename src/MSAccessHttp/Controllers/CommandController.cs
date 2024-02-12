@@ -79,7 +79,7 @@ public class CommandController : ControllerBase
                     new OleDbParameter
                     {
                         ParameterName = parameter.ParameterName,
-                        DbType = parameter.DbType,
+                        DbType = parameter.DbType!.Value,
                         Value = parameter.Value,
                     });
             }
