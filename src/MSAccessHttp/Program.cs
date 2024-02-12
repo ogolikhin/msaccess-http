@@ -1,4 +1,5 @@
 
+using MSAccessHttp.ExceptionHandling;
 using System.Text.Json.Serialization;
 
 namespace MSAccessHttp;
@@ -20,6 +21,9 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+        builder.Services.AddProblemDetails();
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
@@ -32,6 +36,7 @@ public class Program
 
         app.UseAuthorization();
 
+        app.UseExceptionHandler();
 
         app.MapControllers();
 
