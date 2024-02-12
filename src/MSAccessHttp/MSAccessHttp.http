@@ -1,0 +1,6 @@
+@MSAccessHttp_HostAddress = http://localhost:5185
+
+GET {{MSAccessHttp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
