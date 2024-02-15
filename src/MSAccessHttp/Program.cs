@@ -1,4 +1,5 @@
 
+using MSAccessHttp.App_Start;
 using MSAccessHttp.ExceptionHandling;
 using System.Text.Json.Serialization;
 
@@ -10,36 +11,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
+        ProgramStart.AddServices(builder.Services);
 
-        builder.Services.AddControllers()
-            .AddJsonOptions(opts =>
-            {
-                opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            });
-
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-
-        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
-        builder.Services.AddProblemDetails();
-
-        var app = builder.Build();
-
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        app.UseExceptionHandler();
-
-        app.MapControllers();
-
-        app.Run();
+        ProgramStart.RunApp(builder);
     }
 }
